@@ -11,7 +11,7 @@ public class houses : MonoBehaviour
     /// <summary>
     /// i will add this feature in future
     /// </summary>
-    public string name = "house";
+    public string Name = "house";
     /// <summary>
     /// house type id of a house. 
     ///     1 = daire katı

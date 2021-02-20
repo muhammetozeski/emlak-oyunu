@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
             }
         }
         houses garbageHouse = new houses();
-        garbageHouse.name = "garbage";
+        garbageHouse.Name = "garbage";
         return garbageHouse;
     }
     int decideToPrice(houses house)

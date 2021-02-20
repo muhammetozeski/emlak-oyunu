@@ -5227,18 +5227,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  newHousesUI: []
-  newHouses:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  newHousesUI:
+  - {fileID: 1177995114}
+  - {fileID: 1289915374}
+  - {fileID: 708975727}
+  - {fileID: 1175116227}
+  - {fileID: 1082630842}
+  - {fileID: 1486441642}
+  - {fileID: 1056876949}
+  - {fileID: 630367005}
+  - {fileID: 165122879}
+  - {fileID: 1100684163}
+  newHouses: []
   boughtHouses: []
 --- !u!4 &994185185
 Transform:

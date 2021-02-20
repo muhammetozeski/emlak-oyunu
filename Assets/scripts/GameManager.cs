@@ -42,17 +42,17 @@ public class GameManager : MonoBehaviour
    public void buyingHouse (int no, int uiNo)
     {
         uiNo--;
-        p("no: " + no + " uiNo: " + uiNo);
+        print("no: " + no + " uiNo: " + uiNo);
         houses boughtHouse = searchHouse(no,1);
         print(boughtHouse.price);
-        p(player.money);
+        print(player.money);
         if (player.money >= boughtHouse.price)
         {
             player.money -= boughtHouse.price;
             boughtHouses.Add(boughtHouse);
             //------------------------------------------------
             //increaseColor(newHouses[uiNo].transform.Find("transparent").gameObject, 0f, 110);
-            p("boughted");
+            print("boughted");
         }
         else
         {
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         while (i3 < untill)
         {
             i3 += speed * Time.deltaTime;
-            p(i3);
+            print(i3);
             i2[3] = (byte) i3 ;
             i.color = i2;
         }
@@ -483,13 +483,5 @@ public class GameManager : MonoBehaviour
             saloonNumber = 2;
         }
         return (roomNumber, saloonNumber);
-    }
-    /// <summary>
-    /// this is for writing debug message easier than writing "print" :D also u can use it in a function condition
-    /// </summary>
-    public object p(object Message)
-    {
-        print(Message);
-        return Message;
     }
 }

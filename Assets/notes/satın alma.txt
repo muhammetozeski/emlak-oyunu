@@ -1,0 +1,5 @@
+satın alınan şey bir daha satın alınamıyacak.
+isBought diye bool oluştururuz. doğruysa bir daha satın alınamaz. ve evin rengi şeffaflaşır.
+
+yeni eve geçerken isBought==false ise evin renginin şeffaflığı normale dönsün.
+

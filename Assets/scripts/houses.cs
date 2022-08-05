@@ -5,7 +5,7 @@ using UnityEngine;
 public class houses : MonoBehaviour
 {
     /// <summary>
-    /// the id of house. this is the most important varabile in this file. u will find all houses with this integer.
+    /// the unique id of house. this is the most important varabile in this file. u will find all houses with this integer.
     /// </summary>
     public int no;
     /// <summary>
@@ -43,7 +43,7 @@ public class houses : MonoBehaviour
     /// </summary>
     bool isThereNotAssignedVariable()
     {
-        if (price == 0 || saloonNumber == 0 || roomNumber == 0 || ekoz[0] == 0 || houseType == 0)
+        if (price == 1000000 || saloonNumber == 0 || roomNumber == 0 || ekoz[0] == 0 || houseType == 0)
             return true;
         return false;
     }

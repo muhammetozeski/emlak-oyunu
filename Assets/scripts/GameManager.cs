@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     /// <param name="type">is house bought or new or old?
     /// 1= new
     /// 2= bought
-    /// 3= old (will be add)
+    /// 3= old (will be added)
     /// enter this value to faster find
     /// </param>
     /// <returns></returns>

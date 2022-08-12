@@ -4,15 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 public class buyingButton : MonoBehaviour
 {
-    [SerializeField]GameObject gameManager;
+    [SerializeField] GameManager gameManager;
     Button button;
+    [SerializeField]Image transparent;
     private void Awake()
     {
         button = gameObject.GetComponent<Button>();
         button.onClick.AddListener(onclick);
+
     }
     void onclick()
     {
-        gameManager.GetComponent<GameManager>().buyingHouse(transform.parent.GetComponent<newHousesID>().id.no, int.Parse(transform.parent.name));
+        gameManager.buyHouse(
+            transform.parent.GetComponent<newHousesID>().id,transparent
+            );
     }
 }

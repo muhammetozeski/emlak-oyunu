@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     int b = 1;
@@ -25,10 +26,6 @@ public class GameManager : MonoBehaviour
     int ces;
     int no;
 
-    void Start()
-    {
-        player = new Player();
-    }
 
     void Update()
     {
@@ -37,26 +34,36 @@ public class GameManager : MonoBehaviour
             ces = decideCes();
             assignNewHouses(ces);
             showNewHouses(ces);
+            player.money += 40000;
         }
     }
-   public void buyingHouse (int no, int uiNo)
+   public void buyHouse (houses boughtHouse,Image transparent)
     {
-        uiNo--;
-        print("no: " + no + " uiNo: " + uiNo);
-        houses boughtHouse = searchHouse(no,1);
         print(boughtHouse.price);
         print(player.money);
-        if (player.money >= boughtHouse.price)
+        if (!boughtHouse.isBoughted)
         {
-            player.money -= boughtHouse.price;
-            boughtHouses.Add(boughtHouse);
-            //------------------------------------------------
-            //increaseColor(newHouses[uiNo].transform.Find("transparent").gameObject, 0f, 110);
-            print("boughted");
+            if (player.money >= boughtHouse.price)
+            {
+                player.money -= boughtHouse.price;
+                boughtHouses.Add(boughtHouse);
+                boughtHouse.isBoughted = true;
+                Vector3 _p = transparent.transform.position;
+                _p = new Vector3(_p.x, _p.y, 5);
+                ChangeTransparent(transparent,0.3f,1f);
+
+                //------------------------------------------------
+                //increaseColor(newHouses[uiNo].transform.Find("transparent").gameObject, 0f, 110);
+                print("boughted");
+            }
+            else
+            {
+                print("u have no enough money dude");
+            }
         }
         else
         {
-            print("u have no enough money dude");
+            print("u already bought this house");
         }
     }
     void increaseColor(GameObject theObject,float from, float untill, float speed=3f)
@@ -87,7 +94,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     houses searchHouse(int no, int type = 0)
     {
-        if(type == 0)
+        if(type == 0)//unknown
         {
             foreach (houses template in newHouses)
             {
@@ -140,7 +147,7 @@ public class GameManager : MonoBehaviour
             }
             if (house.roomNumber != 3)
             {
-                price += Random.Range(50000, 450001);
+                price += Random.Range(80000, 450001);
                 if (house.roomNumber == 7)
                     price += 100000;
                 else if (house.roomNumber == 6)
@@ -249,7 +256,10 @@ public class GameManager : MonoBehaviour
                 price += 400000;
             }
         }
-        price -= price % 1000;
+        if(price<100000)
+            price -= price % 1000;
+        else
+            price -= price % 10000;
         return price;
     }
     string putDot(int price)
@@ -424,7 +434,7 @@ public class GameManager : MonoBehaviour
     {
         int roomNumber = 0;
         int saloonNumber =1;//living room/hall/lounge number
-        int Range = Random.Range(0,101);
+        int Range = Random.Range(0,100);
 
         if (houseType == 1)
         {
@@ -483,5 +493,37 @@ public class GameManager : MonoBehaviour
             saloonNumber = 2;
         }
         return (roomNumber, saloonNumber);
+    }
+    void ChangeTransparent(Image image, float fadelimit=0.3f,float fadetime=0.5f, int fadetype=2)
+    {
+        if (fadetype == 2)
+            StartCoroutine(FadeIn(image, fadetime, fadelimit));
+        else
+            StartCoroutine(FadeOut(image, fadetime, fadelimit));
+    }
+    private YieldInstruction fadeInstruction = new YieldInstruction();
+    IEnumerator FadeOut(Image image, float fadeTime, float fadelimit)
+    {
+        float elapsedTime = 0.0f;
+        Color c = image.color;
+        while (elapsedTime < fadeTime)
+        {
+            yield return fadeInstruction;
+            elapsedTime += Time.deltaTime;
+            c.a = fadelimit - Mathf.Clamp01(elapsedTime / fadeTime);
+            image.color = c;
+        }
+    }
+    IEnumerator FadeIn(Image image, float fadeTime, float fadelimit)
+    {
+        float elapsedTime = 0.0f;
+        Color c = image.color;
+        while (elapsedTime < fadeTime)
+        {
+            yield return fadeInstruction;
+            elapsedTime += Time.deltaTime;
+            c.a = Mathf.Clamp(elapsedTime / fadeTime,0, fadelimit);
+            image.color = c;
+        }
     }
 }

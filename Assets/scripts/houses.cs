@@ -41,6 +41,12 @@ public class houses : MonoBehaviour
     /// <summary>
     /// use this to check that if there is a not assigned varaible. if true, there is a not assigned varaible.
     /// </summary>
+
+    /// <summary>
+    /// is this house already boughted?
+    /// returns true if it is.
+    /// </summary>
+    public bool isBoughted=false;
     bool isThereNotAssignedVariable()
     {
         if (price == 1000000 || saloonNumber == 0 || roomNumber == 0 || ekoz[0] == 0 || houseType == 0)
